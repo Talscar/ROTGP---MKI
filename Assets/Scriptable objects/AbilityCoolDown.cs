@@ -31,9 +31,9 @@ public class AbilityCoolDown : MonoBehaviour
         ability = selectedAbility;
         myButtonImage = GetComponent<Image>();
         abilitySource = GetComponent<AudioSource>();
-        myButtonImage.sprite = ability.aSprite;
-        darkMask.sprite = ability.aSprite;
-        coolDownDuration = ability.aBaseCoolDown;
+        myButtonImage.sprite = ability.abilitySprite;
+        darkMask.sprite = ability.abilitySprite;
+        coolDownDuration = ability.abilityBaseCoolDown;
         ability.Initialize(weaponHolder);
         AbilityReady();
     }
@@ -77,7 +77,7 @@ public class AbilityCoolDown : MonoBehaviour
         darkMask.enabled = true;
         coolDownTextDisplay.enabled = true;
 
-        abilitySource.clip = ability.aSound;
+        abilitySource.clip = ability.abilitySound;
         abilitySource.Play();
         ability.TriggerAbility();
     }

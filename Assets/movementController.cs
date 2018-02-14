@@ -17,22 +17,7 @@ public class movementController : MonoBehaviour {
     //Function for my own interactions
 
     //Function to use Powerups in my possession.
-    //bool whileMovement;
-    //void movement(bool moving)
-    //{
-    //    whileMovement = moving;
-    //}
-
-
-    //void Update()
-    //{
-    //    if(whileMovement)
-    //    {
-    //        //The player is moving
-
-    //        //The player is moving
-    //    }
-    //}
+    public StatusEffect inflicted;
 
     Rigidbody rb;
     void Start()
@@ -58,6 +43,10 @@ public class movementController : MonoBehaviour {
         //rb.AddForce(Vector3.forward * 1000);
         rb.velocity += transform.forward * (z * forceFactor);
 
+        if (inflicted != null)
+        {
+
+        }
         //////Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Jump"),Input.GetAxis("Vertical"));
 
 
@@ -65,4 +54,26 @@ public class movementController : MonoBehaviour {
         //////rb.AddForce(moveDirection * speed);
 
     }
+
+    public void statusProcessor(StatusEffect infliction)
+    {
+        Debug.Log("Processing the StatusEffect!");
+    }
 }
+
+    //bool whileMovement;
+    //void movement(bool moving)
+    //{
+    //    whileMovement = moving;
+    //}
+
+
+    //void Update()
+    //{
+    //    if(whileMovement)
+    //    {
+    //        //The player is moving
+
+    //        //The player is moving
+    //    }
+    //}
