@@ -11,9 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ce558b5e693854f8931e6b4859f0a2, type: 3}
   m_Name: New Projectile Ability
   m_EditorClassIdentifier: 
-  aName: New Ability
-  aSprite: {fileID: 0}
-  aSound: {fileID: 0}
-  aBaseCoolDown: 1
-  projectileForce: 500
-  projectile: {fileID: 0}
+  abilityName: A projectile
+  abilitySprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  abilitySound: {fileID: 8300000, guid: 70b95c1a13f4349a69a279b595715724, type: 3}
+  abilityBaseCoolDown: 1
+  projectileForce: 3000
+  projectile: {fileID: 54459734937593760, guid: 31742e13391dc294f80aeeb37f88821c,
+    type: 2}
