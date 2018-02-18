@@ -17,22 +17,43 @@ public class movementController : MonoBehaviour {
     //Function for my own interactions
 
     //Function to use Powerups in my possession.
+    //bool whileMovement;
+    //void movement(bool moving)
+    //{
+    //    whileMovement = moving;
+    //}
 
 
-    bool whileMovement;
-    void movement(bool moving)
+    //void Update()
+    //{
+    //    if(whileMovement)
+    //    {
+    //        //The player is moving
+
+    //        //The player is moving
+    //    }
+    //}
+
+    Rigidbody rb;
+    void Start()
     {
-        whileMovement = moving;
+        rb = GetComponent<Rigidbody>();
     }
 
-
+    float speed = 10f;
     void Update()
     {
-        if(whileMovement)
-        {
-            //The player is moving
+        var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
+        var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
 
-            //The player is moving
-        }
+        transform.Rotate(0, x, 0);
+        transform.Translate(0, 0, z);
+
+        //////Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Jump"),Input.GetAxis("Vertical"));
+
+
+        ////////transform.position += moveDirection;
+        //////rb.AddForce(moveDirection * speed);
+
     }
 }

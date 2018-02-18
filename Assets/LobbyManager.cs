@@ -9,7 +9,6 @@ public class LobbyManager : MonoBehaviour {
     //Is this lobby at capacity?
     //Does this lobby have AI? If so may replace!
 
-
 	//// Use this for initialization
 	//void Start () {
 		
