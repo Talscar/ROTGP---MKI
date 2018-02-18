@@ -40,14 +40,23 @@ public class movementController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
     }
 
-    float speed = 10f;
+    public float forceFactor = 10f;
+    public float speed = 10f;
+    //float moveSpeed;
     void Update()
     {
+        rb.velocity = new Vector3(0, rb.velocity.y, 0);
         var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
-        var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
+        var z = (Input.GetAxis("Vertical") * Time.deltaTime * 3.0f) * speed;
 
         transform.Rotate(0, x, 0);
-        transform.Translate(0, 0, z);
+        //transform.Translate(0, 0, z);
+
+
+        Vector3 moveDirection = new Vector3(0, 0, z);
+        //rb.MovePosition(moveDirection * speed);//(Vector3.forward * (speed * z));
+        //rb.AddForce(Vector3.forward * 1000);
+        rb.velocity += transform.forward * (z * forceFactor);
 
         //////Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Jump"),Input.GetAxis("Vertical"));
 
