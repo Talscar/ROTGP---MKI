@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 //[CreateAssetMenu(menuName = "Abilities/ProjectileAbility")]
 public class Actor_Scale : Ability {
@@ -46,9 +47,22 @@ public class Actor_Scale : Ability {
 
 
 }
-//[CustomEditor(typeof(Actor_Scale)]
-//public class Editor_ActorScale : Editor
-//{
 
-//}
+
+[CustomEditor(typeof(Actor_Scale))]
+public class Editor_ActorScale : Editor
+{
+    SerializedProperty Actor_Scale;
+    void OnEnable()
+    {
+        Actor_Scale = serializedObject.FindProperty("Actor_Scale");
+        //lookAtPoint = serializedObject.FindProperty("lookAtPoint");
+    }
+    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();
+        EditorGUILayout.PropertyField(Actor_Scale);
+
+    }
+}
 //[custom]
