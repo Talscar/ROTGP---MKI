@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-//[CreateAssetMenu(menuName = "Abilities/ProjectileAbility")]
+[CreateAssetMenu(menuName = "Abilities/StatusEffects/Actor Scale")]
 public class Actor_Scale : Ability {
 
     public bool hasScaleAlteration = false;
@@ -11,13 +11,13 @@ public class Actor_Scale : Ability {
     [Range(0f, 2f)]
     public float scalePercent = 1f;
 
-    bool hasSpeedAlteration = false;
-    [Tooltip("1 is equal to 100%. So 0 is equal to 0% and 15 = 1500%. \n This value sets the current speed of something by a percentage." )]
-    [Range(0f, 15f)]
-    public float speedPercent = 1f;
+    //bool hasSpeedAlteration = false;
+    //[Tooltip("1 is equal to 100%. So 0 is equal to 0% and 15 = 1500%. \n This value sets the current speed of something by a percentage." )]
+    //[Range(0f, 15f)]
+    //public float speedPercent = 1f;
 
 
-    bool hasDuration = false;
+    public bool hasDuration = false;
     [Tooltip("How many seconds this ability will run for!")]
     [Range(1f, 15f)]
     public float duration = 1f;
@@ -50,19 +50,75 @@ public class Actor_Scale : Ability {
 
 
 [CustomEditor(typeof(Actor_Scale))]
+//[ca]
 public class Editor_ActorScale : Editor
 {
+    SerializedProperty abilityName;
+    SerializedProperty abilitySprite;
+    SerializedProperty abilitySound;
+    SerializedProperty abilityBaseCoolDown;
+
+    //
     SerializedProperty Actor_Scale;
-    void OnEnable()
+    SerializedProperty hasScaleAlteration;// = false;
+    SerializedProperty scalePercent;
+
+    SerializedProperty hasDuration;
+    SerializedProperty duration;
+
+
+    public void OnEnable()
     {
+        abilityName = serializedObject.FindProperty("abilityName");
+        abilitySprite = serializedObject.FindProperty("abilitySprite");
+        abilitySound = serializedObject.FindProperty("abilitySound");
+        abilityBaseCoolDown = serializedObject.FindProperty("abilityBaseCoolDown");
+
+
         Actor_Scale = serializedObject.FindProperty("Actor_Scale");
+        hasScaleAlteration = serializedObject.FindProperty("hasScaleAlteration");
+        hasDuration = serializedObject.FindProperty("hasDuration");
+        scalePercent = serializedObject.FindProperty("scalePercent");
+        duration = serializedObject.FindProperty("duration");
         //lookAtPoint = serializedObject.FindProperty("lookAtPoint");
     }
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        EditorGUILayout.PropertyField(Actor_Scale);
+        //[Header("")]
 
+        EditorGUILayout.PropertyField(abilityName);
+        EditorGUILayout.PropertyField(abilitySprite);
+        EditorGUILayout.PropertyField(abilitySound);
+        EditorGUILayout.PropertyField(abilityBaseCoolDown);
+        //EditorGUILayout.PropertyField
+        //EditorGUILayout.Space();
+        //EditorGUILayout.Space();
+        //EditorGUILayout.Space();
+        EditorGUILayout.Separator();
+        Debug.LogWarning("Any modifications to script will have to be added upon requiring modification!");
+        EditorGUILayout.PropertyField(hasScaleAlteration);
+        if(hasScaleAlteration.boolValue)
+        {
+                    EditorGUILayout.PropertyField(scalePercent);
+        }
+        EditorGUILayout.PropertyField(hasDuration);
+        if(hasDuration.boolValue)
+        {
+            EditorGUILayout.PropertyField(duration);
+        }
+
+        //EditorGUILayout.PropertyField(Actor_Scale);
+
+        //if(Actor_Scale.floatValue.)
+        //if (lookAtPoint.vector3Value.y > (target as LookAtPoint).transform.position.y)
+        //{
+        //    EditorGUILayout.LabelField("(Above this object)");
+        //}
+        //EditorGUILayout.FloatField(Actor_Scale.)
+
+
+        serializedObject.ApplyModifiedProperties();
     }
 }
 //[custom]
