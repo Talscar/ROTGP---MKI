@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movementController : MonoBehaviour {
+public class movementControllerForFarmYardRoundUp : MonoBehaviour {
 
     //I am the controller... but no one can just control me.
     //I am given a controller at start by the game manager or if a player drops off the service I can be given a AI in it's place.
@@ -29,73 +29,23 @@ public class movementController : MonoBehaviour {
         inflicted.Initialize(this.gameObject);
     }
 
-    public void newObjective(Transform objective)
-    {
-
-    }
-
     public float forceFactor = 10f;
     public float speed = 10f;
-    float rotSpeed = 15f;
     //float moveSpeed;
     void Update()
     {
-        float x = 0f;// = Input.GetAxis("Horizontal");// * Time.deltaTime * 150.0f;
-        float z = 0f;
         rb.velocity = new Vector3(0, rb.velocity.y, 0);
-        if (!identifier_IsAI)
-        {
-            x = Input.GetAxis("Horizontal");// * Time.deltaTime * 150.0f;
-            z = Input.GetAxis("Vertical");// * Time.deltaTime * 3.0f) * speed;
-        }
+        var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
+        var z = (Input.GetAxis("Vertical") * Time.deltaTime * 3.0f) * speed;
 
-        Vector3 dir = new Vector3(x, 0, z);
-
-        //         1
-        //         |
-        //         |
-        // -1______+______ 1
-        //         |
-        //         |
-        //        -1
-
-        Vector3 targetDir = (dir + transform.position) - transform.position;
-        float step = rotSpeed * Time.deltaTime;
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0F);
-        Debug.DrawRay(transform.position, newDir, Color.red);
-        transform.rotation = Quaternion.LookRotation(newDir);
-        //float moveDir ;
-        float mF = 0f;
-        if (z != 0 || x != 0)
-        {
-            float newZ = Mathf.Abs(z);
-            float newX = Mathf.Abs(x);
-            if(newZ > newX)
-            {
-                mF = newZ;
-            }
-            else
-            {
-                mF = newX;
-            }
-            mF = mF * speed;
-            //mF = newZ * newX;
-            //mF
-        }
-        //else if(z < 0 || x < 0)
-        //{
-        //    mF = -1f;
-        //}
-
-        rb.velocity += transform.forward * ((mF * Time.deltaTime * 3.0f) * forceFactor);
-        //transform.Rotate(0, x, 0);
-        ////transform.Translate(0, 0, z);
+        transform.Rotate(0, x, 0);
+        //transform.Translate(0, 0, z);
 
 
-        //Vector3 moveDirection = new Vector3(0, 0, z);
-        ////rb.MovePosition(moveDirection * speed);//(Vector3.forward * (speed * z));
-        ////rb.AddForce(Vector3.forward * 1000);
-        //rb.velocity += transform.forward * (z * forceFactor);
+        Vector3 moveDirection = new Vector3(0, 0, z);
+        //rb.MovePosition(moveDirection * speed);//(Vector3.forward * (speed * z));
+        //rb.AddForce(Vector3.forward * 1000);
+        rb.velocity += transform.forward * (z * forceFactor);
 
         if (inflicted != null)
         {
