@@ -11,11 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4618d12e9ae6947a9d66d00c8fde70, type: 3}
   m_Name: ActorScale
   m_EditorClassIdentifier: 
-  abilityName: New Ability
+  abilityName: Scale
   abilitySprite: {fileID: 0}
   abilitySound: {fileID: 0}
   abilityBaseCoolDown: 1
-  hasScaleAlteration: 0
-  scalePercent: 1
-  speedPercent: 1
+  Effect: 0
+  Scale:
+    hasScaleAlteration: 1
+    scalePercent: 1
+  Speed:
+    speedPercent: 0
+  hasDuration: 0
   duration: 1

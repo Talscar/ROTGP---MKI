@@ -8,15 +8,36 @@ public class StatusEffect : Ability {
 
     //What abilitys will this have as Data structs
     //enum to select any one of these Data structs and utilise the variables within. Locked based on the selection of the Enum we will have.
-    public struct fatness
+    public enum dataTypes
+    {scale, speed, knockback};
+    public dataTypes Effect;// = dataTypes.scale; 
+
+
+    public scale Scale = new scale();
+    [System.Serializable]public struct scale
+    {
+        public bool hasScaleAlteration;// = false;
+        [Tooltip("1 is equal to 100%. So 0 is equal to 0% and 2 = 200%. \n This value sets the current scale of something by a percentage.")]
+        [Range(0f, 2f)]
+        public float scalePercent;// = 1f;
+    }
+
+    public speed Speed = new speed();
+    [System.Serializable] public struct speed
+    {
+        bool hasSpeedAlteration;// = false;
+        [Tooltip("1 is equal to 100%. So 0 is equal to 0% and 15 = 1500%. \n This value sets the current speed of something by a percentage.")]
+        [Range(0f, 15f)]
+        public float speedPercent; // = 1f;
+    }
+
+    public knockback Knockback = new knockback();
+    [System.Serializable] public struct knockback
     {
 
     }
 
-    public bool hasScaleAlteration = false;
-    [Tooltip("1 is equal to 100%. So 0 is equal to 0% and 2 = 200%. \n This value sets the current scale of something by a percentage.")]
-    [Range(0f, 2f)]
-    public float scalePercent = 1f;
+
 
     //Case statement and Enums to control what is shown and what is processed. Less than, Greater than and Equal too.
 
@@ -66,38 +87,70 @@ public class StatusEffect : Ability {
 //[ca]
 public class Editor_ActorScale : Editor
 {
-    SerializedProperty abilityName;
-    SerializedProperty abilitySprite;
-    SerializedProperty abilitySound;
-    SerializedProperty abilityBaseCoolDown;
+    //SerializedPropertyType dataType;
+
+    SerializedProperty Effect; //ENUM
+
+    SerializedProperty Scale; //STRUCT
+    SerializedProperty Speed; //STRUCT
+    SerializedProperty Knockback; //STRUCT
+
+
+    SerializedProperty abilityName; //STRING
+    SerializedProperty abilitySprite; //IMAGE
+    SerializedProperty abilitySound; //SOUND
+    SerializedProperty abilityBaseCoolDown; //INT or FLOAT ???
 
     //
-    SerializedProperty Actor_Scale;
-    SerializedProperty hasScaleAlteration;// = false;
-    SerializedProperty scalePercent;
+    SerializedProperty hasScaleAlteration; //BOOLEAN
+    SerializedProperty scalePercent; //FLOAT
 
-    SerializedProperty hasDuration;
-    SerializedProperty duration;
+    SerializedProperty hasDuration; //BOOLEAN
+    SerializedProperty duration; //FLOAT
 
 
     public void OnEnable()
     {
+        //dataType = SerializedPropertyType.Enum;
+        Effect = serializedObject.FindProperty("Effect");
+
+        //Struct data types
+        Scale = serializedObject.FindProperty("Scale");
+            //
+        hasScaleAlteration = Scale.FindPropertyRelative("hasScaleAlteration");
+        scalePercent = Scale.FindPropertyRelative("scalePercent");
+            //
+
+        Speed = serializedObject.FindProperty("Speed");
+            //
+
+            //
+        Knockback = serializedObject.FindProperty("Knockback");
+            //
+
+            //
+
+
+        //Struct data types
+
+
+        //Ability Object
         abilityName = serializedObject.FindProperty("abilityName");
         abilitySprite = serializedObject.FindProperty("abilitySprite");
         abilitySound = serializedObject.FindProperty("abilitySound");
         abilityBaseCoolDown = serializedObject.FindProperty("abilityBaseCoolDown");
+        //Ability Object
 
-
-        Actor_Scale = serializedObject.FindProperty("Actor_Scale");
-        hasScaleAlteration = serializedObject.FindProperty("hasScaleAlteration");
+        //Global variables
         hasDuration = serializedObject.FindProperty("hasDuration");
-        scalePercent = serializedObject.FindProperty("scalePercent");
+
         duration = serializedObject.FindProperty("duration");
         //lookAtPoint = serializedObject.FindProperty("lookAtPoint");
     }
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
+        StatusEffect script = (StatusEffect)target;
         //[Header("")]
 
         EditorGUILayout.PropertyField(abilityName);
@@ -107,11 +160,34 @@ public class Editor_ActorScale : Editor
         EditorGUILayout.Separator();
 
         Debug.LogWarning("Any modifications to script will have to be added upon requiring modification!");
-        EditorGUILayout.PropertyField(hasScaleAlteration);
-        if(hasScaleAlteration.boolValue)
+
+    //THE Effects and abilitys
+    //Effect
+
+    //Scale = EditorGUILayout.Foldout(Scale, hasScaleAlteration);
+    //EditorGUILayout.Foldout(Scale)
+    //if (Scale.boolValue)
+    //script.type = (StatusEffect.dataTypes).Editor
+
+    //https://answers.unity.com/questions/1085035/how-can-i-create-a-enum-like-as-component-light.html
+
+        EditorGUILayout.PropertyField(Effect);
+
+        if (script.Effect == StatusEffect.dataTypes.scale)
         {
+            EditorGUILayout.PropertyField(Scale); //This is broken and not a boolean value.
+            if(Scale.isExpanded)
+            {
+                EditorGUILayout.PropertyField(hasScaleAlteration);
+                if (hasScaleAlteration.boolValue)
+                {
                     EditorGUILayout.PropertyField(scalePercent);
+                }
+            }
         }
+
+
+
         EditorGUILayout.PropertyField(hasDuration);
         if(hasDuration.boolValue)
         {
