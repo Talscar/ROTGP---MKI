@@ -25,7 +25,7 @@ public class StatusEffect : Ability {
     public speed Speed = new speed();
     [System.Serializable] public struct speed
     {
-        bool hasSpeedAlteration;// = false;
+        public bool hasSpeedAlteration;// = false;
         [Tooltip("1 is equal to 100%. So 0 is equal to 0% and 15 = 1500%. \n This value sets the current speed of something by a percentage.")]
         [Range(0f, 15f)]
         public float speedPercent; // = 1f;
@@ -88,7 +88,7 @@ public class StatusEffect : Ability {
 public class Editor_ActorScale : Editor
 {
     //SerializedPropertyType dataType;
-
+    StatusEffect script;// = (StatusEffect)target;
     SerializedProperty Effect; //ENUM
 
     SerializedProperty Scale; //STRUCT
@@ -105,12 +105,16 @@ public class Editor_ActorScale : Editor
     SerializedProperty hasScaleAlteration; //BOOLEAN
     SerializedProperty scalePercent; //FLOAT
 
+    SerializedProperty hasSpeedAlteration;
+    SerializedProperty speedPercent;
+
     SerializedProperty hasDuration; //BOOLEAN
     SerializedProperty duration; //FLOAT
 
 
     public void OnEnable()
     {
+
         //dataType = SerializedPropertyType.Enum;
         Effect = serializedObject.FindProperty("Effect");
 
@@ -122,8 +126,9 @@ public class Editor_ActorScale : Editor
             //
 
         Speed = serializedObject.FindProperty("Speed");
-            //
-
+        //
+        hasSpeedAlteration = Speed.FindPropertyRelative("hasSpeedAlteration");
+        speedPercent = Speed.FindPropertyRelative("speedPercent");
             //
         Knockback = serializedObject.FindProperty("Knockback");
             //
@@ -171,8 +176,9 @@ public class Editor_ActorScale : Editor
 
     //https://answers.unity.com/questions/1085035/how-can-i-create-a-enum-like-as-component-light.html
 
-        EditorGUILayout.PropertyField(Effect);
 
+        //SCALE
+        EditorGUILayout.PropertyField(Effect);
         if (script.Effect == StatusEffect.dataTypes.scale)
         {
             EditorGUILayout.PropertyField(Scale); //This is broken and not a boolean value.
@@ -184,7 +190,23 @@ public class Editor_ActorScale : Editor
                     EditorGUILayout.PropertyField(scalePercent);
                 }
             }
-        }
+        } //SCALE
+        else if(script.Effect == StatusEffect.dataTypes.speed)
+        {//Speed
+            EditorGUILayout.PropertyField(Speed); //This is broken and not a boolean value.
+            if (Speed.isExpanded)
+            {
+                EditorGUILayout.PropertyField(hasSpeedAlteration);
+                if (hasSpeedAlteration.boolValue)
+                {
+                    EditorGUILayout.PropertyField(speedPercent);
+                }
+            }
+        }//Speed
+        else if(script.Effect == StatusEffect.dataTypes.knockback)
+        {//Knockback
+
+        }//Knockback
 
 
 

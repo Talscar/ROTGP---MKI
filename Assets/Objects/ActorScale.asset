@@ -20,6 +20,7 @@ MonoBehaviour:
     hasScaleAlteration: 1
     scalePercent: 1
   Speed:
+    hasSpeedAlteration: 1
     speedPercent: 0
   hasDuration: 0
   duration: 1
