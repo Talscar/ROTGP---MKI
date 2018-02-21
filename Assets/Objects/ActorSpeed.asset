@@ -21,6 +21,6 @@ MonoBehaviour:
     scalePercent: 0
   Speed:
     hasSpeedAlteration: 1
-    speedPercent: 0.9
+    speedPercent: 0.95
   hasDuration: 0
   duration: 1
