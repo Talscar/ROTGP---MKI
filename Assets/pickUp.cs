@@ -45,7 +45,7 @@ public class pickUp : MonoBehaviour {
         if(destroyOnEnter)
         {
             Debug.LogWarning("Play Effects!");
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 
