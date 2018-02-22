@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CreateAssetMenu(menuName = "Abilities/StatusEffects/Actor Scale")]
+[CreateAssetMenu(menuName = "Abilities/StatusEffects/Actor Status Effect")]
 public class StatusEffect : Ability {
 
     //What abilitys will this have as Data structs
@@ -67,8 +67,14 @@ public class StatusEffect : Ability {
     //    var Actor_Scale = Target as Actor_Scale;
     //}
 
+    private GameObject effector;
+    private movementController playerCon;
     public override void Initialize(GameObject obj)
     {
+        Debug.LogWarning("Effector requires something to effect, how it will be effected.");
+        effector = obj;
+        playerCon = obj.GetComponent<movementController>();
+        //effector = obj;
         //////launcher = obj.GetComponent<ProjectileShootTriggerable>();
         //////launcher.projectileForce = projectileForce;
         //////launcher.projectile = projectile;
@@ -76,6 +82,11 @@ public class StatusEffect : Ability {
 
     public override void TriggerAbility()
     {
+        if(playerCon != null)
+        {
+            playerCon.statusProcessor(Effect, this);
+        }
+        Debug.LogWarning("Effector requires a way to be effected.");
         //////launcher.Launch();
     }
 

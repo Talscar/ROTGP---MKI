@@ -23,6 +23,7 @@ public class movementController : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        inflicted.Initialize(this.gameObject);
     }
 
     public float forceFactor = 10f;
@@ -49,15 +50,54 @@ public class movementController : MonoBehaviour {
         }
         //////Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Jump"),Input.GetAxis("Vertical"));
 
-
+        if (inflicted != null)
+        {
+            inflicted.TriggerAbility();
+        }
+        //if(Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    inflicted.TriggerAbility();
+        //    //inflicted.Initialize(this.gameObject);
+        //}
         ////////transform.position += moveDirection;
         //////rb.AddForce(moveDirection * speed);
 
     }
 
-    public void statusProcessor(StatusEffect infliction)
+    //public Ability[] statusEffect;
+
+    //[System.Serializable]public struct statusModifier
+    //{
+
+    //}
+    public void moreThanOneEffect(StatusEffect[] effects)
     {
+        foreach(StatusEffect effect in effects)
+        {
+            inflicted = effect;
+            statusProcessor(effect.Effect, effect);
+        }
+        return;
+    }
+    public void statusProcessor(StatusEffect.dataTypes data, Ability _this)
+    {
+        switch(data)
+        {
+            case StatusEffect.dataTypes.scale:
+                gameObject.transform.localScale = transform.localScale * inflicted.Scale.scalePercent;
+                break;
+
+            case StatusEffect.dataTypes.speed:
+                speed = speed * inflicted.Speed.speedPercent;
+                break;
+
+            case StatusEffect.dataTypes.knockback:
+                break;
+        }
         Debug.Log("Processing the StatusEffect!");
+        inflicted = null;
+
+        return;
     }
 }
 
