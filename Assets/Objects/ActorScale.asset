@@ -18,7 +18,7 @@ MonoBehaviour:
   Effect: 0
   Scale:
     hasScaleAlteration: 1
-    scalePercent: 1.02
+    scalePercent: 1.04
   Speed:
     hasSpeedAlteration: 1
     speedPercent: 0
