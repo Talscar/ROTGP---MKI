@@ -28,6 +28,7 @@ public class artificialController : MonoBehaviour {
 
     void repath()
     {
+        //https://docs.unity3d.com/Manual/editor-CustomEditors.html
         //Raycasts will identify a target in front obstructing the player.
         //Target blocking play will be messured to a point the player could be diverted.
         //Custom vector2 can be used to repath the players coordinates to help direct the player to the goal.
