@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 [CreateAssetMenu(menuName = "Abilities/StatusEffects/Actor Status Effect")]
 public class StatusEffect : Ability {
@@ -93,7 +96,7 @@ public class StatusEffect : Ability {
 
 }
 
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(StatusEffect))]
 //[ca]
 public class Editor_ActorScale : Editor
@@ -240,4 +243,5 @@ public class Editor_ActorScale : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+#endif
 //[custom]
