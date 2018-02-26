@@ -44,20 +44,23 @@ public class artificialController : MonoBehaviour {
                 //Transform newTarget;
                 float distance = float.MaxValue;
                 Transform[] targets = containerObjectives.GetComponentsInChildren<Transform>();
-                foreach(Transform child in targets)
+                foreach (Transform child in targets)
                 {
                     float testDistance = Vector3.Distance(child.position, transform.position);
-                    if(first)
+                    if (child != containerObjectives)
                     {
-                        newTarget = child;
-                        distance = testDistance;
-                    }
-                    else
-                    {
-                        if(testDistance < distance)
+                        if (first)
                         {
                             newTarget = child;
                             distance = testDistance;
+                        }
+                        else
+                        {
+                            if (testDistance < distance)
+                            {
+                                newTarget = child;
+                                distance = testDistance;
+                            }
                         }
                     }
                 }

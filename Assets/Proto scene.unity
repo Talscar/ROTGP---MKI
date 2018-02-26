@@ -538,7 +538,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 82879739}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 558.8, y: -15.6, z: 257.84525}
+  m_LocalPosition: {x: 460, y: -15.6, z: 257.84525}
   m_LocalScale: {x: 118.207085, y: 42.24501, z: 540.4117}
   m_Children: []
   m_Father: {fileID: 0}
@@ -620,7 +620,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 122331670}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 248.2, y: -15.6, z: 558}
+  m_LocalPosition: {x: 248, y: -15.6, z: 439}
   m_LocalScale: {x: 118.207085, y: 42.24501, z: 540.4117}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1329,7 +1329,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 259750392}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 254, y: -15.6, z: -58.9}
+  m_LocalPosition: {x: 254, y: -15.6, z: 59}
   m_LocalScale: {x: 118.207085, y: 42.24501, z: 540.4117}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1751,7 +1751,7 @@ MonoBehaviour:
   inflicted: {fileID: 11400000, guid: 7d81f32b456440844806a64b9a66e1a7, type: 2}
   forceFactor: 1000
   speed: 1
-  rotSpeed: 30
+  rotSpeed: 2
 --- !u!54 &324650135
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2971,7 +2971,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 632794084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -58.9, y: -15.6, z: 257.84525}
+  m_LocalPosition: {x: 52, y: -15.6, z: 257.84525}
   m_LocalScale: {x: 118.207085, y: 42.24501, z: 540.4117}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3682,7 +3682,7 @@ MonoBehaviour:
   inflicted: {fileID: 11400000, guid: 7d81f32b456440844806a64b9a66e1a7, type: 2}
   forceFactor: 1000
   speed: 1
-  rotSpeed: 30
+  rotSpeed: 2
 --- !u!54 &825989493
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5358,7 +5358,7 @@ MonoBehaviour:
   inflicted: {fileID: 11400000, guid: 7d81f32b456440844806a64b9a66e1a7, type: 2}
   forceFactor: 1000
   speed: 1
-  rotSpeed: 30
+  rotSpeed: 2
 --- !u!54 &1197270910
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8807,11 +8807,11 @@ MonoBehaviour:
     type: 2}
   Objective_Container: {fileID: 2034560079}
   targets: []
-  targets_Minimum: 0
+  targets_Minimum: 5
   landTarget: {fileID: 1435521921}
-  downRange: 0.5
+  downRange: 250
   spawnOffset: 0.5
-  count: 5
+  count: 0.1
 --- !u!1 &2036259108
 GameObject:
   m_ObjectHideFlags: 0
