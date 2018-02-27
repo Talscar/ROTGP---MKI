@@ -123,7 +123,7 @@ public class artificialController : MonoBehaviour {
     //}
 
     // Update is called once per frame
-    Vector2 dir;
+    public Vector2 dir;
 	void Update ()
     {
         if (myController != null)

@@ -35,17 +35,25 @@ public class objectiveSetup : MonoBehaviour {
                 //print("Found an object - distance: " + hit.distance + hit.collider.name);
                 if (hit.collider.gameObject.GetComponent("Terrain") != null)
                 {
-                    //RaycastHit hit2;
 
-                    //Vector3 p1 = hit.point;
-                    //float distanceToObstacle = 0;
+                    RaycastHit hit2;
+                    Vector3 p1 = hit.point;
+                    float distanceToObstacle = 0;
+                    // Cast a sphere wrapping character controller 10 meters forward
+                    // to see if it is about to hit anything.
+                    if (Physics.SphereCast(p1, testArea, transform.forward, out hit2, 10))
+                    {
+                        distanceToObstacle = hit2.distance;
+                        if(hit2.collider.gameObject.GetComponent("Terrain") != null)
+                        {
 
-                    //// Cast a sphere wrapping character controller 10 meters forward
-                    //// to see if it is about to hit anything.
-                    //if (Physics.SphereCast(p1, testArea, transform.forward, out hit, 10))
-                    //{
-                    //    distanceToObstacle = hit2.distance;
-                    //}
+                        }
+                        else
+                        {
+                            hitTarget = false;
+                            break;
+                        }
+                    } //Don't spawn here too close to thing
                     {
                         fireCoordinates = hit.point;
                         fireCoordinates.y += spawnOffset;

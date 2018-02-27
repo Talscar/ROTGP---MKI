@@ -44,9 +44,16 @@ public class movementController : MonoBehaviour {
     {
         dirAi = theDirection;
     }
-    Vector2 dirAi = new Vector2(0f, 0f); //Simulated by he Ai;
+    [SerializeField] private Vector2 dirAi = new Vector2(0f, 0f); //Simulated by he Ai;
+
+    Vector3 speedCalculation = new Vector3(0,0,0);
+    public float speedCheck;
+
     void Update()
     {
+
+        speedCheck = (transform.position - speedCalculation).magnitude;
+        speedCalculation = transform.position;
         //if(allowMovement && !canMove)
         //{
         //    canMove = true;
@@ -62,6 +69,7 @@ public class movementController : MonoBehaviour {
             {
                 x = Input.GetAxis("Horizontal");// * Time.deltaTime * 150.0f;
                 z = Input.GetAxis("Vertical");// * Time.deltaTime * 3.0f) * speed;
+                dirAi = new Vector2(x, z);
             }
 
             Vector3 dir = new Vector3(x, 0, z);
@@ -76,7 +84,7 @@ public class movementController : MonoBehaviour {
 
             Vector3 targetDir = (dir + transform.position) - transform.position;
             float step = rotSpeed * Time.deltaTime;
-            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0F);
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0F); //Rotation rate.
             Debug.DrawRay(transform.position, newDir, Color.red);
             transform.rotation = Quaternion.LookRotation(newDir);
             //float moveDir ;
