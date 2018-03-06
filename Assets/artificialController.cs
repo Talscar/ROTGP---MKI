@@ -149,4 +149,12 @@ public class artificialController : MonoBehaviour {
         }
 		
 	}
+
+
+    //AI Behavior and Calculations
+    struct myPathCalculation
+    {
+        public float distance;
+        public Vector3[] point;
+    }
 }
