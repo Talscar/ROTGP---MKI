@@ -25,6 +25,9 @@ public class artificialController : MonoBehaviour {
     {
         if (GetComponent("movementController") != null)
             myController = GetComponent<movementController>();
+        //else
+        //{
+        //}
 
         //agent = GetComponent<NavMeshAgent>();
         //NavMeshPath path = new NavMeshPath();
@@ -146,6 +149,11 @@ public class artificialController : MonoBehaviour {
                     target = getTarget(null);
                 }
             }
+        }
+        else
+        {
+            NavMeshAgent agent = GetComponent<NavMeshAgent>();
+            agent.destination = target.position;
         }
 		
 	}
