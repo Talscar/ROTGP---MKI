@@ -2456,6 +2456,7 @@ MonoBehaviour:
   rotSpeed: 11
   dirAi: {x: 0, y: 0}
   speedCheck: 0
+  controllerValue: 0
 --- !u!54 &324650135
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3914,6 +3915,7 @@ GameObject:
   - component: {fileID: 575650661}
   - component: {fileID: 575650660}
   - component: {fileID: 575650659}
+  - component: {fileID: 575650662}
   m_Layer: 0
   m_Name: Player# (0)
   m_TagString: Untagged
@@ -3970,6 +3972,7 @@ MonoBehaviour:
   rotSpeed: 11
   dirAi: {x: 0, y: 0}
   speedCheck: 0
+  controllerValue: 0
 --- !u!54 &575650661
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3986,6 +3989,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &575650662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 575650657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3947e230fccde0e438c3139cf1c837c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players: {fileID: 0}
+  containerObjectives: {fileID: 2034560079}
+  target: {fileID: 0}
+  moveToHere: {x: 0, y: 0, z: 0}
+  node: {x: 0, y: 0, z: 0}
+  myController: {fileID: 0}
+  dir: {x: 0, y: 0}
 --- !u!1 &601531772
 GameObject:
   m_ObjectHideFlags: 0
@@ -4971,6 +4992,7 @@ MonoBehaviour:
   rotSpeed: 11
   dirAi: {x: 0, y: 0}
   speedCheck: 0
+  controllerValue: 0
 --- !u!54 &825989493
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7522,6 +7544,7 @@ MonoBehaviour:
   rotSpeed: 11
   dirAi: {x: 0, y: 0}
   speedCheck: 0
+  controllerValue: 0
 --- !u!54 &1197270910
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7970,6 +7993,7 @@ MonoBehaviour:
   rotSpeed: 11
   dirAi: {x: 0, y: 0}
   speedCheck: 0
+  controllerValue: 0
 --- !u!54 &1250453273
 Rigidbody:
   m_ObjectHideFlags: 0
