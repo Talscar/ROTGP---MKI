@@ -22,8 +22,33 @@ public class movementController : MonoBehaviour {
     public StatusEffect inflicted;
 
     Rigidbody rb;
+
+    int getNumFromString(string aWord)
+    {
+        int nameNum = -1;
+
+        string newNum = "";
+        //Debug.LogError("Require research and assistance converting transform name to int number!");
+        foreach (char testing in aWord)
+        {
+            int tester = 0;
+            //if(testing != int)
+            if (char.IsNumber(testing))
+            {
+                tester = int.Parse(testing + "");
+                newNum += testing;
+                //Debug.Log(testing);
+
+                nameNum = int.Parse(newNum);
+            }
+        }
+        return nameNum;
+    }
+
     void Start()
     {
+        controllerValue = getNumFromString(gameObject.name);
+        //foreach(Input.GetJoystickNames() controller)
         //if(ai)
         rb = GetComponent<Rigidbody>();
         inflicted.Initialize(this.gameObject);
@@ -49,9 +74,10 @@ public class movementController : MonoBehaviour {
     Vector3 speedCalculation = new Vector3(0,0,0);
     public float speedCheck;
 
+    public int controllerValue = 0;
     void Update()
     {
-
+        //Debug.Log(Input.GetJoystickNames()[0] + " is moved");
         speedCheck = (transform.position - speedCalculation).magnitude;
         speedCalculation = transform.position;
         //if(allowMovement && !canMove)
@@ -67,8 +93,14 @@ public class movementController : MonoBehaviour {
             rb.velocity = new Vector3(0, rb.velocity.y, 0);
             if (!identifier_IsAI)
             {
-                x = Input.GetAxis("Horizontal");// * Time.deltaTime * 150.0f;
-                z = Input.GetAxis("Vertical");// * Time.deltaTime * 3.0f) * speed;
+                if(Input.GetJoystickNames()[controllerValue] != null)
+                {
+                    //x = Input.GetJoystickNames()[controllerValue]
+                    x = Input.GetAxis("Horizontal");// * Time.deltaTime * 150.0f;
+                    z = Input.GetAxis("Vertical");// * Time.deltaTime * 3.0f) * speed;
+                }
+                //x = Input.GetAxis("Horizontal");// * Time.deltaTime * 150.0f;
+                //z = Input.GetAxis("Vertical");// * Time.deltaTime * 3.0f) * speed;
                 dirAi = new Vector2(x, z);
             }
 

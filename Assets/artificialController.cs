@@ -13,6 +13,7 @@ public class artificialController : MonoBehaviour {
      * 
      * Does have Ability?
     */
+    int playerValue_InLobby = 0;
     public Transform players;
     public Transform containerObjectives;
     public Transform target;
@@ -23,6 +24,10 @@ public class artificialController : MonoBehaviour {
     //private NavMeshAgent agent;
     void Start()
     {
+        //string number = getn(gameObject.name);
+        //playerValue_InLobby = int.TryParse(gameObject.name, out);
+        //playerValue_InLobby = int.TryParse(gameObject.name, out);
+
         if (GetComponent("movementController") != null)
             myController = GetComponent<movementController>();
         //else
@@ -133,6 +138,7 @@ public class artificialController : MonoBehaviour {
         {
             if(myController.identifier_IsAI)
             {
+                //if(Input.GetJoystickNames()[i])
                 Debug.Log("Check!");
                 if (target != null)
                 {
@@ -150,7 +156,7 @@ public class artificialController : MonoBehaviour {
                 }
             }
         }
-        else
+        else if(target != null)
         {
             NavMeshAgent agent = GetComponent<NavMeshAgent>();
             agent.destination = target.position;
